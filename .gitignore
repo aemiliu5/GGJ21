@@ -2,6 +2,15 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+
+# Jetbrain Rider Cache
+.idea/
+Assets/Plugins/Editor/JetBrains*
+
+# Visual Studio Code
+.vscode/
+
+/[Aa]ssets/Extras/Excluded/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
