@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mouse | Компьютерная мышь
+* source:	https://sketchfab.com/3d-models/mouse-887c5cafb48c4969ba1ca39065beef8a
+* author:	cityon360 (https://sketchfab.com/cityon360)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mouse | Компьютерная мышь" (https://sketchfab.com/3d-models/mouse-887c5cafb48c4969ba1ca39065beef8a) by cityon360 (https://sketchfab.com/cityon360) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

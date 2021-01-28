@@ -1,0 +1,11 @@
+Model Information:
+* title:	Keyboard
+* source:	https://sketchfab.com/3d-models/keyboard-9cad169b913545f683ae2a27080ca270
+* author:	Cameron-Main (https://sketchfab.com/Cameron-Main)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Keyboard" (https://sketchfab.com/3d-models/keyboard-9cad169b913545f683ae2a27080ca270) by Cameron-Main (https://sketchfab.com/Cameron-Main) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
