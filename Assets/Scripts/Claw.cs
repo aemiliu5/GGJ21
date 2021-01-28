@@ -6,23 +6,22 @@ using UnityEngine;
 public class Claw : MonoBehaviour
 {
     [Header("Parameters")]
+    public string axisName = "Claw Axis LR";
     public float speed;
-    private float horizontalMovement;
-    private float verticalMovement;
     public Vector2 topLeft;
     public Vector2 bottomRight;
 
-    [Header("Axes")]
-    public Rigidbody clawRigidbody;
+    #region Private Variables
+    private Rigidbody rb;
+    private Transform axisLR;
+    private float horizontalMovement;
+    private float verticalMovement;
+    #endregion
 
-    [Header("References")] 
-    public Rigidbody rb;
-    public GameObject cubeLr;
-
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        axisLR = GameObject.Find(axisName).transform;
     }
 
     // Update is called once per frame
@@ -31,9 +30,9 @@ public class Claw : MonoBehaviour
         // Inputs
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
-        
+
         // "Parent" only the Z position axis of the Cube LR object to the cube.
-        cubeLr.transform.position = new Vector3(cubeLr.transform.position.x, cubeLr.transform.position.y, transform.position.z);
+        axisLR.position = new Vector3(axisLR.position.x, axisLR.position.y, transform.position.z);
     }
 
     private void FixedUpdate()
@@ -54,20 +53,20 @@ public class Claw : MonoBehaviour
     private void Movement()
     {
         // First, check the limits/constraints...
-        
+
         // Horizontal limit
         if ((horizontalMovement < 0 && rb.position.x <= topLeft.x) ||
             (horizontalMovement > 0 && rb.position.x >= bottomRight.x))
             horizontalMovement = 0;
-        
+
         // Vertical limit
         if ((verticalMovement > 0 && rb.position.z >= bottomRight.y) ||
             (verticalMovement < 0 && rb.position.z <= topLeft.y))
             verticalMovement = 0;
-        
+
         // Then apply the proper movement forces.
         Vector3 movementVector = new Vector3(horizontalMovement, 0, verticalMovement).normalized * (Time.fixedDeltaTime * speed);
-        
-        clawRigidbody.AddForce(movementVector, ForceMode.Acceleration);
+
+        rb.AddForce(movementVector, ForceMode.Acceleration);
     }
 }
