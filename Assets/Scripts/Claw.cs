@@ -38,13 +38,6 @@ public class Claw : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
-        /*
-        // Keep rigidbodies inside claw limits.
-        Vector3 endPosition = rb.position + rb.velocity * Time.fixedDeltaTime;
-        endPosition.x = Mathf.Clamp(endPosition.x, topLeft.x, bottomRight.x);
-        endPosition.z = Mathf.Clamp(endPosition.z, topLeft.y, bottomRight.y);
-        rb.position = endPosition;
-        */
     }
 
     /// <summary>
