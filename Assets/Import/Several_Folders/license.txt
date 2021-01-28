@@ -1,0 +1,11 @@
+Model Information:
+* title:	Several Folders
+* source:	https://sketchfab.com/3d-models/several-folders-1a493b49ef954985ab8057ca66c387d5
+* author:	janexx (https://sketchfab.com/janexx)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Several Folders" (https://sketchfab.com/3d-models/several-folders-1a493b49ef954985ab8057ca66c387d5) by janexx (https://sketchfab.com/janexx) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
