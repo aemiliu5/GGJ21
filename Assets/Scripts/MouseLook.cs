@@ -9,7 +9,7 @@ public class MouseLook : MonoBehaviour
     public string chairName = "M_Chair";
     public Transform chairTransform;
 
-    private float xRotation = 0f, yRotation = 0f;
+    private float xRotation = 0f, yRotation = 90f;
 
     void Awake()
     {
@@ -26,6 +26,6 @@ public class MouseLook : MonoBehaviour
         yRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        chairTransform.rotation = Quaternion.Euler(chairTransform.rotation.x, yRotation, chairTransform.rotation.z);
+        chairTransform.rotation = Quaternion.Euler(chairTransform.rotation.x, yRotation + 90f, chairTransform.rotation.z);
     }
 }
