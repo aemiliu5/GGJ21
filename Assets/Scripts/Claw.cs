@@ -6,42 +6,54 @@ using UnityEngine;
 public class Claw : MonoBehaviour
 {
     [Header("Parameters")]
-    //public string axisName = "Claw Axis LR";
     public float speed;
     public Vector2 topLeft;
     public Vector2 bottomRight;
     public Transform clawVertical;
-    public float height;
-    public float heightDiff;
+    public float verticalMovementSpeed;
 
+    public bool hooked;
+    public Animator anim;
+    
     #region Private Variables
     private Rigidbody rb;
     private Transform axisLR;
-    private float horizontalMovement;
-    private float verticalMovement;
+    private float xMovement;
+    private float zMovement;
     #endregion
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        //axisLR = GameObject.Find(axisName).transform;
     }
 
     // Update is called once per frame
     private void Update()
     {
         // Inputs
-        horizontalMovement = Input.GetAxis("Horizontal");
-        verticalMovement = Input.GetAxis("Vertical");
+        xMovement = Input.GetAxis("Horizontal");
+        zMovement = Input.GetAxis("Vertical");
         
-        // Vertical
+        // Vertical movement
         if (Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y > 1.3f)
         {
-            clawVertical.transform.position -= new Vector3(0, heightDiff * Time.deltaTime, 0);
-            horizontalMovement = verticalMovement = 0;
+            clawVertical.transform.position -= new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
+            xMovement = zMovement = 0;
         }
         else if(!Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y < 2.3f)
-            clawVertical.transform.position += new Vector3(0, heightDiff * Time.deltaTime, 0);
+            clawVertical.transform.position += new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
+        
+        // Claw Lock
+        if (Input.GetMouseButton(0))
+        {
+            hooked = true;
+            anim.SetBool("hooked", hooked);
+        }
+        else
+        {
+            hooked = false;
+            anim.SetBool("hooked", hooked);
+        }
     }
 
     private void FixedUpdate()
@@ -57,17 +69,17 @@ public class Claw : MonoBehaviour
         // First, check the limits/constraints...
 
         // Horizontal limit
-        if ((horizontalMovement < 0 && rb.position.x <= topLeft.x) ||
-            (horizontalMovement > 0 && rb.position.x >= bottomRight.x))
-            horizontalMovement = 0;
+        if ((xMovement < 0 && rb.position.x <= topLeft.x) ||
+            (xMovement > 0 && rb.position.x >= bottomRight.x))
+            xMovement = 0;
 
         // Vertical limit
-        if ((verticalMovement > 0 && rb.position.z >= bottomRight.y) ||
-            (verticalMovement < 0 && rb.position.z <= topLeft.y))
-            verticalMovement = 0;
+        if ((zMovement > 0 && rb.position.z >= bottomRight.y) ||
+            (zMovement < 0 && rb.position.z <= topLeft.y))
+            zMovement = 0;
 
         // Then apply the proper movement forces.
-        Vector3 movementVector = new Vector3(horizontalMovement, 0, (verticalMovement)).normalized * (Time.fixedDeltaTime * speed);
+        Vector3 movementVector = new Vector3(xMovement, 0, (zMovement)).normalized * (Time.fixedDeltaTime * speed);
 
         rb.AddForce(movementVector, ForceMode.Acceleration);
     }
