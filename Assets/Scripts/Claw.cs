@@ -14,10 +14,13 @@ public class Claw : MonoBehaviour
 
     public bool hooked;
     public Animator anim;
+    public HookSensor hookSensor;
+    public SphereCollider hookCollider;
+    public Transform hookParent;
+    public GameObject hookedObject;
     
     #region Private Variables
     private Rigidbody rb;
-    private Transform axisLR;
     private float xMovement;
     private float zMovement;
     #endregion
@@ -48,12 +51,32 @@ public class Claw : MonoBehaviour
         {
             hooked = true;
             anim.SetBool("hooked", hooked);
+
+            if (hookSensor.sensedObject != null)
+            {
+                hookedObject = hookSensor.sensedObject;
+                hookedObject.GetComponent<Rigidbody>().isKinematic = true;
+                hookedObject.layer = 8;
+                hookedObject.transform.parent = hookParent.transform;
+            }
         }
         else
         {
             hooked = false;
             anim.SetBool("hooked", hooked);
+
+            if (hookedObject != null)
+            {
+                hookedObject.GetComponent<Rigidbody>().isKinematic = false;
+                hookedObject.layer = 0;
+                hookedObject.transform.parent = null;
+            }
+            
+            hookedObject = null;
         }
+        
+        if(hookedObject)
+            Debug.Log(hookedObject.GetComponent<Rigidbody>().velocity);
     }
 
     private void FixedUpdate()

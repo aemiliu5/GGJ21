@@ -645,7 +645,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 29462
+    surfaceParameter: 18688
     meshQueryIndex: 7
     subMeshQueryIndex: 0
     geometryHashValue: 6475050843209543338
@@ -2603,7 +2603,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 29346
+    surfaceParameter: 18684
     meshQueryIndex: 0
     subMeshQueryIndex: 0
     geometryHashValue: -4062439612322727201
@@ -2974,7 +2974,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 28566
+    surfaceParameter: 18720
     meshQueryIndex: 8
     subMeshQueryIndex: 0
     geometryHashValue: -6563022173331965944
@@ -3340,7 +3340,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 28486
+    surfaceParameter: 18686
     meshQueryIndex: 6
     subMeshQueryIndex: 0
     geometryHashValue: -3649271858993579878
@@ -3423,7 +3423,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 29466
+    surfaceParameter: 18698
     meshQueryIndex: 2
     subMeshQueryIndex: 0
     geometryHashValue: -4335604424710977509
@@ -6655,7 +6655,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 28970
+    surfaceParameter: 18778
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 2275414621614040303
@@ -9290,7 +9290,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 0
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  backgroundColorHDR: {r: 0.023529412, g: 0.07058824, b: 0.1882353, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -9346,7 +9346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a3e5567d9c33640afee5412e221b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 30
   clampTop: 70
   clampBottom: 40
   chairName: M_Chair
