@@ -11,9 +11,8 @@ public class Claw : MonoBehaviour
     public Vector2 topLeft;
     public Vector2 bottomRight;
     public Transform clawVertical;
-    public Transform clawVertical2;
     public float height;
-    //public float height2;
+    public float heightDiff;
 
     #region Private Variables
     private Rigidbody rb;
@@ -34,24 +33,15 @@ public class Claw : MonoBehaviour
         // Inputs
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
-
-        // "Parent" only the Z position axis of the Cube LR object to the cube.
-        //clawVertical.position = transform.position + new Vector3(0, height, 0);
-        //clawVertical2.GetComponent<Rigidbody>().position = transform.position + new Vector3(0, height2, 0);
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            clawVertical.transform.position -= new Vector3(0, 0.01f, 0);
-            //height2 -= 0.025f;
-            horizontalMovement = verticalMovement = 0;
-        }
         
-        if (Input.GetKey(KeyCode.E))
+        // Vertical
+        if (Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y > 1.3f)
         {
-            clawVertical.transform.position += new Vector3(0, 0.01f, 0);
-            //height2 -= 0.025f;
+            clawVertical.transform.position -= new Vector3(0, heightDiff * Time.deltaTime, 0);
             horizontalMovement = verticalMovement = 0;
         }
+        else if(!Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y < 2.3f)
+            clawVertical.transform.position += new Vector3(0, heightDiff * Time.deltaTime, 0);
     }
 
     private void FixedUpdate()
@@ -75,7 +65,7 @@ public class Claw : MonoBehaviour
         if ((verticalMovement > 0 && rb.position.z >= bottomRight.y) ||
             (verticalMovement < 0 && rb.position.z <= topLeft.y))
             verticalMovement = 0;
-        
+
         // Then apply the proper movement forces.
         Vector3 movementVector = new Vector3(horizontalMovement, 0, (verticalMovement)).normalized * (Time.fixedDeltaTime * speed);
 
