@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4261774225226603780}
   - component: {fileID: 3982991274914798977}
   - component: {fileID: 2960925782477901396}
+  - component: {fileID: 7829397854457395311}
   m_Layer: 0
   m_Name: Conveyor01Belt_Belt_0
   m_TagString: Untagged
@@ -158,6 +159,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7829397854457395311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038603528063317434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb6ca1d923f5b041bedb0972ac8f3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mr: {fileID: 0}
+  yOffset: 0
+  speed: 0.2
 --- !u!1 &1361629363748730927
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,11 @@
+Model Information:
+* title:	low poly sticky notes
+* source:	https://sketchfab.com/3d-models/low-poly-sticky-notes-a528cfc3e30c466cb7cd8e3ea12e8c9b
+* author:	fra.six42 (https://sketchfab.com/fra.six42)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "low poly sticky notes" (https://sketchfab.com/3d-models/low-poly-sticky-notes-a528cfc3e30c466cb7cd8e3ea12e8c9b) by fra.six42 (https://sketchfab.com/fra.six42) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
