@@ -68,13 +68,15 @@ public class Procedural : MonoBehaviour
         int materialPos = Random.Range(0, target.materials.Count);
         Debug.Log("Material Pos: " + materialPos);
 
+        // Better to use the fallback texture by default, it looks better.
         Texture texture = fallbackTexture;
-        if (target.textures.Count != 0)
+        
+        /*if (target.textures.Count != 0)
         {
             int texturePos = Random.Range(0, target.textures.Count);
             Debug.Log("Texture Pos: " + texturePos);
             texture = target.textures[texturePos];
-        }
+        }*/
 
 
         createdLugages.Add(NewLugage(target.model, target.scale, target.minMaxMass, target.materials[materialPos], texture, target.isRandomScale, target.minMaxScaleFactor));
@@ -94,8 +96,17 @@ public class Procedural : MonoBehaviour
         // new material with texture
         Material nm = new Material(material);
         nm.SetTexture("_BaseColorMap", texture);
-        // nm.SetColor("_BaseColor", colors[Random.Range(0, colors.Count)]);
+        nm.SetColor("_BaseColor", colors[Random.Range(0, colors.Count)]);
         newInstance.GetComponent<MeshRenderer>().material = nm;
+
+        // If the mesh contains sub-meshes/children, apply the same material to them.
+        if (newInstance.GetComponentsInChildren<MeshRenderer>().Length > 0)
+        {
+            foreach (MeshRenderer childMr in newInstance.GetComponentsInChildren<MeshRenderer>())
+            {
+                childMr.material = nm;
+            }
+        }
 
         // rigidbody check and add if needed
         Rigidbody rb = newInstance.GetComponent<Rigidbody>() ? newInstance.GetComponent<Rigidbody>() : null;
