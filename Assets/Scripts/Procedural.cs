@@ -70,7 +70,7 @@ public class Procedural : MonoBehaviour
 
         // Better to use the fallback texture by default, it looks better.
         Texture texture = fallbackTexture;
-        
+
         /*if (target.textures.Count != 0)
         {
             int texturePos = Random.Range(0, target.textures.Count);
@@ -87,7 +87,7 @@ public class Procedural : MonoBehaviour
         GameObject newInstance = Instantiate(model, newLugageSpawnLocation, model.transform.rotation);   // new instance of object
 
         // tag for the triggers
-        newInstance.tag = "lugage";
+        newInstance.tag = "Hookable";
 
         // scale it
         if (isRandomScale) newInstance.transform.localScale = scale * Random.Range(minMaxScaleFactor.x, minMaxScaleFactor.y);
