@@ -82,7 +82,7 @@ public class Procedural : MonoBehaviour
 
     GameObject NewLugage(GameObject model, Vector3 scale, Vector2 minMaxMass, Material material, Texture texture, bool isRandomScale, Vector2 minMaxScaleFactor)
     {
-        GameObject newInstance = Instantiate(model, newLugageSpawnLocation, Quaternion.Euler(0, 0, 0));   // new instance of object
+        GameObject newInstance = Instantiate(model, newLugageSpawnLocation, model.transform.rotation);   // new instance of object
 
         // tag for the triggers
         newInstance.tag = "lugage";
