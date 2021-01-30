@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class Client : MonoBehaviour
 {
-    public GameObject target;
+    [Header("AI")]
+    public GameObject targetCounter;
+    public GameObject targetLeaving;
 
     public enum State
     {
@@ -24,19 +26,20 @@ public class Client : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        nav.destination = target.transform.position;
+        nav.destination = targetCounter.transform.position;
         currentState = State.GoingToCounter;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Animation & Navigation
         switch (currentState)
         {
             case State.GoingToCounter:
                 if (nav.remainingDistance > 0.5f)
                 {
-                    nav.destination = target.transform.position;
+                    nav.destination = targetCounter.transform.position;
                 }
                 else
                 {
@@ -51,11 +54,37 @@ public class Client : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, 0.05f);
                 
                 break;
-                
             
-            // [TODO]
-            case State.LeavingAngry: break;
-            case State.LeavingHappy: break;
+            case State.LeavingHappy:
+
+                if (anim.GetBool("walking") == false)
+                {
+                    anim.SetBool("win", true);
+                }
+                
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName(("Walking")))
+                {
+                    anim.SetBool("walking", true);
+                    nav.destination = targetLeaving.transform.position;
+                    nav.isStopped = false;
+                }
+                break;
+            
+            case State.LeavingAngry:
+
+                if (anim.GetBool("walking") == false)
+                {
+                    anim.SetBool("lose", true);
+                }
+                
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName(("Walking")))
+                {
+                    anim.SetBool("walking", true);
+                    nav.destination = targetLeaving.transform.position;
+                    nav.isStopped = false;
+                }
+                
+                break;
         }
     }
 }
