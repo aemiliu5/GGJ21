@@ -55,6 +55,7 @@ public class Claw : MonoBehaviour
         else if (!Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y < 2.3f)
             clawVertical.transform.position += new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
 
+        #region Hooking
         // Claw Lock
         if (Input.GetMouseButtonDown(0))
         {
@@ -86,7 +87,9 @@ public class Claw : MonoBehaviour
 
         if (hookedObject)
             Debug.Log(hookedObject.GetComponent<Rigidbody>().velocity);
+        #endregion
 
+        #region Audio
         // Audio
         bool xzDown = (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S));
         bool xzHold = (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S));
@@ -109,6 +112,7 @@ public class Claw : MonoBehaviour
             PlayAudio(audioUdMoveLoop, true);
         else if (yUp)
             PlayAudio(audioUdMoveEnd, false);
+        #endregion
     }
 
     void PlayAudio(AudioClip clip, bool willLoop)
@@ -136,12 +140,12 @@ public class Claw : MonoBehaviour
             xMovement = 0;
 
         // Vertical limit
-        if ((zMovement > 0 && rb.position.z >= bottomRight.y) ||
-            (zMovement < 0 && rb.position.z <= topLeft.y))
+        if ((zMovement > 0 && rb.position.z <= bottomRight.y) ||
+            (zMovement < 0 && rb.position.z >= topLeft.y))
             zMovement = 0;
 
         // Then apply the proper movement forces.
-        Vector3 movementVector = new Vector3(xMovement, 0, (zMovement)).normalized * (Time.fixedDeltaTime * speed);
+        Vector3 movementVector = new Vector3(-zMovement, 0, xMovement).normalized * (Time.fixedDeltaTime * speed);
 
         rb.AddForce(movementVector, ForceMode.Acceleration);
     }
