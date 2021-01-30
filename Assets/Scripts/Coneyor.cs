@@ -10,22 +10,22 @@ public class Coneyor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         mr = GetComponent<MeshRenderer>();
+        mr = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Material conveyorMat = mr.material;
         Vector2 offset = conveyorMat.mainTextureOffset;
 
-        yOffset += Time.deltaTime * speed ;
+        yOffset += Time.deltaTime * speed;
         if (yOffset >= 1)
         {
             yOffset = 0;
         }
-        
+
 
         offset.y = yOffset;
         mr.material.SetTextureOffset("_BaseColorMap", offset);

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mesh_suitcase
+* source:	https://sketchfab.com/3d-models/mesh-suitcase-ae494f865ae54cb697b3b7f059ca36d8
+* author:	CorvusLunae (https://sketchfab.com/CorvusLunae)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mesh_suitcase" (https://sketchfab.com/3d-models/mesh-suitcase-ae494f865ae54cb697b3b7f059ca36d8) by CorvusLunae (https://sketchfab.com/CorvusLunae) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
