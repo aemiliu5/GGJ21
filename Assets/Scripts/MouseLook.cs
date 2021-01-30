@@ -21,6 +21,7 @@ public class MouseLook : MonoBehaviour
         chairTransform = GameObject.Find(chairName).transform;
         cam = transform.GetComponent<Camera>();
         cam.fieldOfView = currentFOV = defaultFOV;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate; // Cap framerate to refresh rate
     }
 
     void Update()

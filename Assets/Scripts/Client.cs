@@ -51,7 +51,7 @@ public class Client : MonoBehaviour
             case State.AtCounter:
                 nav.isStopped = true;
                 anim.SetBool("walking", false);
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, 0.05f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 270, 0), 0.05f);
                 
                 break;
             
