@@ -16,18 +16,20 @@ public class Procedural : MonoBehaviour
     // public GameObject delivery;
 
     [Header("Prefabs And Stuff")]
+    public List<Color> colors;
     public PhysicMaterial physicsMaterial;
+    public Texture fallbackTexture;
     [Space(10)]
     public List<Lugages> prefabs;
 
-
-    #region Private Variables
     [Header("<----- DEBUGGING ONLY! ----->")]
     [Header("<----- DO NOT TOUCH! ----->")]
     [Space(20)]
-    [SerializeField]
-    private List<GameObject> createdLugages;
+    public List<GameObject> createdLugages;
+
+    #region Private Variables
     private List<GameObject> despawnedLugages;
+    [SerializeField]
     private float nextSpawnTimer;
     #endregion
 
@@ -61,11 +63,21 @@ public class Procedural : MonoBehaviour
     void HandleNewLugage()
     {
         int prefabPos = Random.Range(0, prefabs.Count);
+        Debug.Log("Prefab Pos: " + prefabPos);
         Lugages target = prefabs[prefabPos];
         int materialPos = Random.Range(0, target.materials.Count);
-        int texturePos = Random.Range(0, target.textures.Count);
+        Debug.Log("Material Pos: " + materialPos);
 
-        createdLugages.Add(NewLugage(target.model, target.scale, target.minMaxMass, target.materials[materialPos], target.textures[texturePos], target.isRandomScale, target.minMaxScaleFactor));
+        Texture texture = fallbackTexture;
+        if (target.textures.Count != 0)
+        {
+            int texturePos = Random.Range(0, target.textures.Count);
+            Debug.Log("Texture Pos: " + texturePos);
+            texture = target.textures[texturePos];
+        }
+
+
+        createdLugages.Add(NewLugage(target.model, target.scale, target.minMaxMass, target.materials[materialPos], texture, target.isRandomScale, target.minMaxScaleFactor));
     }
 
     GameObject NewLugage(GameObject model, Vector3 scale, Vector2 minMaxMass, Material material, Texture texture, bool isRandomScale, Vector2 minMaxScaleFactor)
@@ -82,6 +94,7 @@ public class Procedural : MonoBehaviour
         // new material with texture
         Material nm = new Material(material);
         nm.SetTexture("_BaseColorMap", texture);
+        // nm.SetColor("_BaseColor", colors[Random.Range(0, colors.Count)]);
         newInstance.GetComponent<MeshRenderer>().material = nm;
 
         // rigidbody check and add if needed

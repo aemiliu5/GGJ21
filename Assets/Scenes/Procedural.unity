@@ -645,7 +645,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 18598
+    surfaceParameter: 19388
     meshQueryIndex: 7
     subMeshQueryIndex: 0
     geometryHashValue: 6475050843209543338
@@ -2888,7 +2888,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 18594
+    surfaceParameter: 19384
     meshQueryIndex: 0
     subMeshQueryIndex: 0
     geometryHashValue: -4062439612322727201
@@ -3276,7 +3276,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 18646
+    surfaceParameter: 19442
     meshQueryIndex: 8
     subMeshQueryIndex: 0
     geometryHashValue: -6563022173331965944
@@ -3675,7 +3675,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 18596
+    surfaceParameter: 19386
     meshQueryIndex: 6
     subMeshQueryIndex: 0
     geometryHashValue: -3649271858993579878
@@ -3758,7 +3758,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 18626
+    surfaceParameter: 19418
     meshQueryIndex: 2
     subMeshQueryIndex: 0
     geometryHashValue: -4335604424710977509
@@ -7794,7 +7794,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 18704
+    surfaceParameter: 19502
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 2275414621614040303
@@ -14965,12 +14965,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8180454113951909816, guid: 14b86573b8fdcc0469723c7c3f5f6c03,
-        type: 3}
-      propertyPath: physicsMaterial
-      value: 
-      objectReference: {fileID: 13400000, guid: 40ef49247217a444c9d654dd79ae3efc,
-        type: 2}
     - target: {fileID: 8180454113951909817, guid: 14b86573b8fdcc0469723c7c3f5f6c03,
         type: 3}
       propertyPath: m_Name

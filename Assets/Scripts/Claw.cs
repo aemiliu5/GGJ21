@@ -45,16 +45,16 @@ public class Claw : MonoBehaviour
         // Inputs
         xMovement = Input.GetAxis("Horizontal");
         zMovement = Input.GetAxis("Vertical");
-        
+
         // Vertical movement
         if (Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y > 1.3f)
         {
             clawVertical.transform.position -= new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
             xMovement = zMovement = 0;
         }
-        else if(!Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y < 2.3f)
+        else if (!Input.GetKey(KeyCode.Space) && transform.parent.transform.position.y < 2.3f)
             clawVertical.transform.position += new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
-        
+
         // Claw Lock
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,7 +69,7 @@ public class Claw : MonoBehaviour
                 hookedObject.transform.parent = hookParent.transform;
             }
         }
-        else if((Input.GetMouseButtonUp(0)))
+        else if ((Input.GetMouseButtonUp(0)))
         {
             hooked = false;
             anim.SetBool("hooked", hooked);
@@ -83,56 +83,39 @@ public class Claw : MonoBehaviour
 
             hookedObject = null;
         }
-        
-        if(hookedObject)
+
+        if (hookedObject)
             Debug.Log(hookedObject.GetComponent<Rigidbody>().velocity);
-        
+
         // Audio
         bool xzDown = (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S));
-        bool xzHold = (Input.GetKey(KeyCode.A)     || Input.GetKey(KeyCode.D)     || Input.GetKey(KeyCode.W)     || Input.GetKey(KeyCode.S));
-        bool xzUp   = (Input.GetKeyUp(KeyCode.A)   || Input.GetKeyUp(KeyCode.D)   || Input.GetKeyUp(KeyCode.W)   || Input.GetKeyUp(KeyCode.S));
+        bool xzHold = (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S));
+        bool xzUp = (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S));
 
-        bool yDown  = (Input.GetKeyDown(KeyCode.Space));
-        bool yHold  = (Input.GetKey(KeyCode.Space));
-        bool yUp    = (Input.GetKeyUp(KeyCode.Space));
-        
-        if(xzDown && !aud.isPlaying)
-        {
-            aud.clip = audioLrMoveStart;
-            aud.loop = false;
-            aud.Play();
-        }
+        if (xzDown && !aud.isPlaying)
+            PlayAudio(audioLrMoveStart, false);
         else if (xzHold && (aud.time == 0 || aud.time > 3f))
-        {
-            aud.clip = audioLrMoveLoop;
-            aud.loop = true;
-            aud.Play();
-        }
+            PlayAudio(audioLrMoveLoop, true);
         else if (xzUp)
-        {
-            aud.clip = audioLrMoveEnd;
-            aud.loop = false;
-            aud.Play();
-        }
-        
-        if(yDown && !aud.isPlaying)
-        {
-            aud.clip = audioUdMoveStart;
-            aud.loop = false;
-            aud.Play();
-        }
+            PlayAudio(audioLrMoveEnd, false);
+
+        bool yDown = (Input.GetKeyDown(KeyCode.Space));
+        bool yHold = (Input.GetKey(KeyCode.Space));
+        bool yUp = (Input.GetKeyUp(KeyCode.Space));
+
+        if (yDown && !aud.isPlaying)
+            PlayAudio(audioUdMoveStart, false);
         else if (yHold && (aud.time == 0 || aud.time > 3f))
-        {
-            aud.clip = audioUdMoveLoop;
-            aud.loop = true;
-            aud.Play();
-        }
+            PlayAudio(audioUdMoveLoop, true);
         else if (yUp)
-        {
-            aud.clip = audioUdMoveEnd;
-            aud.loop = false;
-            aud.Play();
-        }
+            PlayAudio(audioUdMoveEnd, false);
+    }
+
+    void PlayAudio(AudioClip clip, bool willLoop)
+    {
+        aud.clip = clip;
+        aud.loop = willLoop;
+        aud.Play();
     }
 
     private void FixedUpdate()
