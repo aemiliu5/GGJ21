@@ -135,18 +135,25 @@ public class Claw : MonoBehaviour
         // First, check the limits/constraints...
 
         // Horizontal limit
-        if ((xMovement < 0 && rb.position.x <= topLeft.x) ||
-            (xMovement > 0 && rb.position.x >= bottomRight.x))
-            xMovement = 0;
+        
+        // Horizontal - A/D - -Z
+        // Vertical - W/S - X
+        
+        
+        if ((-zMovement < 0 && rb.position.x <= topLeft.x) ||         // topLeft.x
+            (-zMovement > 0 && rb.position.x >= bottomRight.x))      // bottomRight.x
+            zMovement = 0;
 
         // Vertical limit
-        if ((zMovement > 0 && rb.position.z <= bottomRight.y) ||
-            (zMovement < 0 && rb.position.z >= topLeft.y))
-            zMovement = 0;
+        if ((xMovement < 0 && rb.position.z <= bottomRight.y) ||    // bottomRight.y
+            (xMovement > 0 && rb.position.z >= topLeft.y))          // topLeft.y
+            xMovement = 0;
 
         // Then apply the proper movement forces.
         Vector3 movementVector = new Vector3(-zMovement, 0, xMovement).normalized * (Time.fixedDeltaTime * speed);
 
         rb.AddForce(movementVector, ForceMode.Acceleration);
+
+        Debug.Log(rb.position);
     }
 }
