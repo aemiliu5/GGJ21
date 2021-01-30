@@ -18,7 +18,16 @@ public class Claw : MonoBehaviour
     public SphereCollider hookCollider;
     public Transform hookParent;
     public GameObject hookedObject;
-    
+
+    [Header("Audio")]
+    public AudioSource aud;
+    public AudioClip audioLrMoveStart;
+    public AudioClip audioLrMoveLoop;
+    public AudioClip audioLrMoveEnd;
+    public AudioClip audioUdMoveStart;
+    public AudioClip audioUdMoveLoop;
+    public AudioClip audioUdMoveEnd;
+
     #region Private Variables
     private Rigidbody rb;
     private float xMovement;
@@ -47,7 +56,7 @@ public class Claw : MonoBehaviour
             clawVertical.transform.position += new Vector3(0, verticalMovementSpeed * Time.deltaTime, 0);
         
         // Claw Lock
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             hooked = true;
             anim.SetBool("hooked", hooked);
@@ -60,7 +69,7 @@ public class Claw : MonoBehaviour
                 hookedObject.transform.parent = hookParent.transform;
             }
         }
-        else
+        else if((Input.GetMouseButtonUp(0)))
         {
             hooked = false;
             anim.SetBool("hooked", hooked);
@@ -71,12 +80,59 @@ public class Claw : MonoBehaviour
                 hookedObject.layer = 0;
                 hookedObject.transform.parent = null;
             }
-            
+
             hookedObject = null;
         }
         
         if(hookedObject)
             Debug.Log(hookedObject.GetComponent<Rigidbody>().velocity);
+        
+        // Audio
+        bool xzDown = (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S));
+        bool xzHold = (Input.GetKey(KeyCode.A)     || Input.GetKey(KeyCode.D)     || Input.GetKey(KeyCode.W)     || Input.GetKey(KeyCode.S));
+        bool xzUp   = (Input.GetKeyUp(KeyCode.A)   || Input.GetKeyUp(KeyCode.D)   || Input.GetKeyUp(KeyCode.W)   || Input.GetKeyUp(KeyCode.S));
+
+        bool yDown  = (Input.GetKeyDown(KeyCode.Space));
+        bool yHold  = (Input.GetKey(KeyCode.Space));
+        bool yUp    = (Input.GetKeyUp(KeyCode.Space));
+        
+        if(xzDown && !aud.isPlaying)
+        {
+            aud.clip = audioLrMoveStart;
+            aud.loop = false;
+            aud.Play();
+        }
+        else if (xzHold && (aud.time == 0 || aud.time > 3f))
+        {
+            aud.clip = audioLrMoveLoop;
+            aud.loop = true;
+            aud.Play();
+        }
+        else if (xzUp)
+        {
+            aud.clip = audioLrMoveEnd;
+            aud.loop = false;
+            aud.Play();
+        }
+        
+        if(yDown && !aud.isPlaying)
+        {
+            aud.clip = audioUdMoveStart;
+            aud.loop = false;
+            aud.Play();
+        }
+        else if (yHold && (aud.time == 0 || aud.time > 3f))
+        {
+            aud.clip = audioUdMoveLoop;
+            aud.loop = true;
+            aud.Play();
+        }
+        else if (yUp)
+        {
+            aud.clip = audioUdMoveEnd;
+            aud.loop = false;
+            aud.Play();
+        }
     }
 
     private void FixedUpdate()
