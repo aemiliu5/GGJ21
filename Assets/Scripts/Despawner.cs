@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Despawner : MonoBehaviour
 {
-    void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject collided = other.gameObject;
         if (collided.CompareTag("Hookable"))

@@ -12,18 +12,20 @@ public class ConveyorBelt : MonoBehaviour
     private void FixedUpdate()
     {
         for (int i = 0; i <= onBelt.Count - 1; i++)
-        {
+        { 
             onBelt[i].GetComponent<Rigidbody>().velocity = speed * direction * Time.fixedDeltaTime;
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        onBelt.Add(other.gameObject);
+        if(other.gameObject.CompareTag("Hookable"))
+            onBelt.Add(other.gameObject);
     }
     
     private void OnCollisionExit(Collision other)
     {
-        onBelt.Remove(other.gameObject);
+        if(other.gameObject.CompareTag("Hookable"))
+            onBelt.Remove(other.gameObject);
     }
 }

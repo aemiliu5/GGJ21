@@ -112,13 +112,14 @@ public class Procedural : MonoBehaviour
         Rigidbody rb = newInstance.GetComponent<Rigidbody>() ? newInstance.GetComponent<Rigidbody>() : null;
         if (rb == null) rb = newInstance.AddComponent<Rigidbody>();
         rb.mass = Random.Range(minMaxMass.x, minMaxMass.y);
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.interpolation = RigidbodyInterpolation.None;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
         // collider check and add if needed
         MeshCollider mc = newInstance.GetComponent<MeshCollider>() ? newInstance.GetComponent<MeshCollider>() : null;
         if (mc == null) mc = newInstance.AddComponent<MeshCollider>();
         mc.convex = true;   // need that, no idea why
+        mc.material = physicsMaterial;
 
         return newInstance;
     }
@@ -140,6 +141,9 @@ public class Procedural : MonoBehaviour
     public void HandleDelivery(GameObject delivering)
     {
         createdLugages.Remove(delivering);
+        
+        // check if bag was correct, then destroy
+        
         /* if the gameobject is being delivered outside the player view, uncomment next line */
         // Destroy(delivering);
 
