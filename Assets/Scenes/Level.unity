@@ -1159,7 +1159,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 21326
+    surfaceParameter: 19108
     meshQueryIndex: 6
     subMeshQueryIndex: 0
     geometryHashValue: 2337022668192865505
@@ -1690,7 +1690,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: -477266
+    surfaceParameter: 19112
     meshQueryIndex: 11
     subMeshQueryIndex: 0
     geometryHashValue: -4734119749021910041
@@ -2278,7 +2278,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777218
       maskAndChannels: 234881027
-    surfaceParameter: 21326
+    surfaceParameter: 19108
     meshQueryIndex: 13
     subMeshQueryIndex: 0
     geometryHashValue: 4996885335322037177
@@ -3291,7 +3291,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 21328
+    surfaceParameter: 19110
     meshQueryIndex: 9
     subMeshQueryIndex: 0
     geometryHashValue: 334716511383616115
@@ -4632,7 +4632,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 21324
+    surfaceParameter: 19106
     meshQueryIndex: 0
     subMeshQueryIndex: 0
     geometryHashValue: -1754453722939850102
@@ -12320,7 +12320,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 21436
+    surfaceParameter: 19266
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 3069681316302240313
@@ -13009,7 +13009,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 21358
+    surfaceParameter: 19148
     meshQueryIndex: 2
     subMeshQueryIndex: 0
     geometryHashValue: 4232240542152790405
@@ -13375,7 +13375,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777218
       maskAndChannels: 234881027
-    surfaceParameter: 21328
+    surfaceParameter: 19110
     meshQueryIndex: 7
     subMeshQueryIndex: 0
     geometryHashValue: 6198349271390379934
@@ -15932,6 +15932,11 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -40
   maximumY: 70
+  defaultFov: 60
+  minFov: 30
+  currentFov: 60
+  zoomSpeed: 250
+  cam: {fileID: 0}
   chairName: M_Chair
   chairTransform: {fileID: 0}
 --- !u!1 &1603587677
@@ -16134,7 +16139,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777218
       maskAndChannels: 234881027
-    surfaceParameter: -477266
+    surfaceParameter: 19112
     meshQueryIndex: 12
     subMeshQueryIndex: 0
     geometryHashValue: -3028015005439425083
@@ -17905,7 +17910,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 21376
+    surfaceParameter: 19196
     meshQueryIndex: 10
     subMeshQueryIndex: 0
     geometryHashValue: 473580100552591635

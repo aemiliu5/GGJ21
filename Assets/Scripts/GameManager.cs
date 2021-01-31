@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
 
             FindObjectOfType<MouseLook>().enabled = false;
 
+            foreach (AudioSource aud in FindObjectsOfType<AudioSource>())
+            {
+                if(aud.isPlaying)
+                    aud.Pause();
+            }
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -38,6 +44,12 @@ public class GameManager : MonoBehaviour
             PauseMenu.SetActive(false);
 
             FindObjectOfType<MouseLook>().enabled = true;
+            
+            foreach (AudioSource aud in FindObjectsOfType<AudioSource>())
+            {
+                if(aud.time > 0)
+                    aud.Play();
+            }
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
