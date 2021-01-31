@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class MenuManager : MonoBehaviour
 {
     public GameObject MainMenu;
@@ -13,26 +14,32 @@ public class MenuManager : MonoBehaviour
     public Resolution[] resolutions;
     public Dropdown resolutionDropdown;
     public Slider VolumeSlider;
+    public AudioSource myFX;
+    public AudioClip click;
 
     public void Play()
     {
+        ClickSound();
         SceneManager.LoadScene("Level");
     }
 
     public void Settings()
     {
+        ClickSound();
         MainMenu.SetActive(false);
         SettingsMenu.SetActive(true);
     }
 
     public void Credits()
     {
+        ClickSound();
         MainMenu.SetActive(false);
         CreditsMenu.SetActive(true);
     }
 
     public void BackToMainMenu()
     {
+        ClickSound();
         SettingsMenu.SetActive(false);
         CreditsMenu.SetActive(false);
         
@@ -40,8 +47,11 @@ public class MenuManager : MonoBehaviour
    
     }
 
+
+
     public void GoToMainMenuFromWin()
     {
+        ClickSound();
         SceneManager.LoadScene("Menu");
     }
     public void Awake()
@@ -80,7 +90,14 @@ public class MenuManager : MonoBehaviour
 
     public void Exit()
     {
+        ClickSound();
         Application.Quit();
     }
+
+    public void ClickSound()
+    {
+        myFX.PlayOneShot(click);
+    }
+
 
 }
