@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class MenuManager : MonoBehaviour
 {
     public GameObject MainMenu;
@@ -17,10 +16,31 @@ public class MenuManager : MonoBehaviour
     public AudioSource myFX;
     public AudioClip click;
 
+    public GameObject loading;
+    public Slider loadSlider;
+    public Text loadText;
+
     public void Play()
     {
         ClickSound();
-        SceneManager.LoadScene("Level");
+        StartCoroutine(LoadAsyncLevel("Level"));
+    }
+
+    IEnumerator LoadAsyncLevel(string sceneName)
+    {
+        MainMenu.SetActive(false);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
+            loadSlider.value = progress;
+            loadText.text = progress * 100 + "%";
+            Debug.Log("Loading Progress: " + progress);
+
+            yield return null;
+        }
     }
 
     public void Settings()
@@ -42,12 +62,9 @@ public class MenuManager : MonoBehaviour
         ClickSound();
         SettingsMenu.SetActive(false);
         CreditsMenu.SetActive(false);
-        
+
         MainMenu.SetActive(true);
-   
     }
-
-
 
     public void GoToMainMenuFromWin()
     {
@@ -56,6 +73,9 @@ public class MenuManager : MonoBehaviour
     }
     public void Awake()
     {
+        MainMenu.SetActive(true);
+        loading.SetActive(false);
+        SettingsMenu.SetActive(false);
         GetAvailableResolutions();
         AddUIListeners();
     }
@@ -98,6 +118,4 @@ public class MenuManager : MonoBehaviour
     {
         myFX.PlayOneShot(click);
     }
-
-
 }
