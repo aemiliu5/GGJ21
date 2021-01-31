@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public GameObject PauseMenu;
     public bool paused;
-    
+    public float timerEnd;
+    public int stamps;
+
+    private void Start()
+    {
+        paused = false;
+        Time.timeScale = 1;
+    }
 
     // Update is called once per frame
     void Update()
@@ -15,6 +23,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
             Pause();
+        }
+
+        if (Time.time > timerEnd)
+        {
+            // load win scene
         }
     }
 

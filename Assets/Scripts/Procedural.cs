@@ -22,6 +22,8 @@ public class Procedural : MonoBehaviour
     public GameObject clientInstance;
     public Vector3 clientSpawnpoint;
 
+    public GameManager gm;
+
     // [Header("References")]
     // public GameObject despawner;
     // public GameObject delivery;
@@ -52,6 +54,8 @@ public class Procedural : MonoBehaviour
         createdLugages = new List<GameObject>(maxNumberOfLugages);
         spawnedLugages = new List<GameObject>(maxNumberOfLugages);
         despawnedLugages = new List<GameObject>();
+
+        gm = FindObjectOfType<GameManager>();
 
         nextSpawnTimer = Random.Range(minMaxOfWaitTime.x, minMaxOfWaitTime.y);    // find the next spawn timer
         Debug.Log(string.Format("Next Spawn in: {0} seconds", nextSpawnTimer));
@@ -211,14 +215,14 @@ public class Procedural : MonoBehaviour
             // Bag was correct.
             if (delivering.Equals(correctCase))
             {
-                correctTotal++;
+                gm.stamps++;
                 clientInstance.GetComponent<Client>().currentState = Client.State.LeavingHappy;
                 Destroy(clientInstance, 5f);
                 Debug.Log(":)");
             }
             else
             {
-                correctTotal--;
+                gm.stamps--;
                 clientInstance.GetComponent<Client>().currentState = Client.State.LeavingAngry;
                 Destroy(clientInstance, 5f);
                 Debug.Log(":(");
