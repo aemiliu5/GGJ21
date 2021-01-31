@@ -38,6 +38,13 @@ public class MouseLook : MonoBehaviour
     float rotationX = 0F;
     float rotationY = 0F;
 
+    public float defaultFov;
+    public float minFov;
+    public float currentFov;
+    public float zoomSpeed;
+
+    public Camera cam;
+
     Quaternion originalRotation;
     
     public string chairName = "M_Chair";
@@ -50,6 +57,7 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
         chairTransform = GameObject.Find(chairName).transform;
         Application.targetFrameRate = Screen.currentResolution.refreshRate; // Cap framerate to refresh rate
+        cam = GetComponent<Camera>();
     }
     
     void Start()
@@ -92,8 +100,22 @@ public class MouseLook : MonoBehaviour
                 Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, Vector3.left);
                 transform.localRotation = originalRotation * yQuaternion;
             }
-        
-            chairTransform.rotation = Quaternion.Euler(chairTransform.rotation.x, rotationX + 180, chairTransform.rotation.z);
+
+        chairTransform.rotation =
+            Quaternion.Euler(chairTransform.rotation.x, rotationX + 180, chairTransform.rotation.z);
+                
+            if (Input.GetMouseButton(1))
+            {
+                if (currentFov > minFov)
+                    currentFov -= zoomSpeed * Time.deltaTime;
+            }
+            else
+            {
+                if (currentFov < defaultFov)
+                    currentFov += zoomSpeed * Time.deltaTime;
+            }
+
+            cam.fieldOfView = currentFov;
     }
 
     public static float ClampAngle(float angle, float min, float max)
