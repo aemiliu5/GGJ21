@@ -27,11 +27,6 @@ public class Client : MonoBehaviour
     {
         targetCounter = GameObject.Find("AI Target - Counter");
         targetLeaving = GameObject.Find("AI Target - Leaving");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         nav.destination = targetCounter.transform.position;
@@ -54,7 +49,7 @@ public class Client : MonoBehaviour
                     currentState = State.AtCounter;
                 }
 
-                Debug.Log(nav.remainingDistance);
+                //Debug.Log(nav.remainingDistance);
                 break;
 
             case State.AtCounter:

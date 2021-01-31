@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCounter: {fileID: 0}
   targetLeaving: {fileID: 0}
+  stopDistance: 0.5
   currentState: 0
 --- !u!195 &1901983852709479881
 NavMeshAgent:

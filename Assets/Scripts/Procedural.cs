@@ -19,6 +19,8 @@ public class Procedural : MonoBehaviour
     public GameObject correctCaseSpawnpoint;
     public int correctTotal = 0;
     public GameObject clientPrefab;
+    public GameObject clientInstance;
+    public Vector3 clientSpawnpoint;
 
     // [Header("References")]
     // public GameObject despawner;
@@ -55,7 +57,7 @@ public class Procedural : MonoBehaviour
         Debug.Log(string.Format("Next Spawn in: {0} seconds", nextSpawnTimer));
         
         CreateAllLugage();
-        GetCorrectCase();
+        StartCoroutine(GetCorrectCase());
     }
 
     void Update()
@@ -94,10 +96,14 @@ public class Procedural : MonoBehaviour
         createdLugages.Remove(createdLugages[0]);
     }
 
-    void GetCorrectCase()
+    private IEnumerator GetCorrectCase()
     {
+        yield return new WaitForSeconds(5f);
+        
         // Spawn client
-        //Instantiate(clientPrefab, )
+        clientInstance = Instantiate(clientPrefab, clientSpawnpoint, Quaternion.Euler(0, -180, 0));
+
+        yield return new WaitForSeconds(3f);
         
         // Combine spawned, created, and despawned luggage.
         List<GameObject> combinedLugages = spawnedLugages.Concat(createdLugages).Concat(despawnedLugages).ToList();
@@ -200,15 +206,26 @@ public class Procedural : MonoBehaviour
         
             Destroy(delivering);
             Destroy(correctCaseClone);
-            GetCorrectCase();
             CreateLugage();
 
             // Bag was correct.
             if (delivering.Equals(correctCase))
+            {
                 correctTotal++;
+                clientInstance.GetComponent<Client>().currentState = Client.State.LeavingHappy;
+                Destroy(clientInstance, 5f);
+                Debug.Log(":)");
+            }
             else
+            {
                 correctTotal--;
+                clientInstance.GetComponent<Client>().currentState = Client.State.LeavingAngry;
+                Destroy(clientInstance, 5f);
+                Debug.Log(":(");
+            }
             
+            StartCoroutine(GetCorrectCase());
+
             /* if the gameobject is being delivered outside the player view, uncomment next line */
             // Destroy(delivering);
 
