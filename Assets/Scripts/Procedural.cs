@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Procedural : MonoBehaviour
 {
@@ -10,6 +13,11 @@ public class Procedural : MonoBehaviour
     [Space(10)]
     public Vector3 newLugageSpawnLocation;
     public Vector3 existingLugageSpawnLocation;
+
+    public GameObject correctCase;
+    public GameObject correctCaseClone;
+    public GameObject correctCaseSpawnpoint;
+    public int correctTotal = 0;
 
     // [Header("References")]
     // public GameObject despawner;
@@ -26,9 +34,10 @@ public class Procedural : MonoBehaviour
     [Header("<----- DO NOT TOUCH! ----->")]
     [Space(20)]
     public List<GameObject> createdLugages;
-
+    
     #region Private Variables
     private List<GameObject> despawnedLugages;
+    [SerializeField] private List<GameObject> spawnedLugages;
     [SerializeField]
     private float nextSpawnTimer;
     #endregion
@@ -38,10 +47,14 @@ public class Procedural : MonoBehaviour
         // despawner = gameObject.transform.Find("Despawner").gameObject;
         // delivery = gameObject.transform.Find("Delivery").gameObject;
         createdLugages = new List<GameObject>(maxNumberOfLugages);
+        spawnedLugages = new List<GameObject>(maxNumberOfLugages);
         despawnedLugages = new List<GameObject>();
 
         nextSpawnTimer = Random.Range(minMaxOfWaitTime.x, minMaxOfWaitTime.y);    // find the next spawn timer
         Debug.Log(string.Format("Next Spawn in: {0} seconds", nextSpawnTimer));
+        
+        CreateAllLugage();
+        GetCorrectCase();
     }
 
     void Update()
@@ -50,14 +63,47 @@ public class Procedural : MonoBehaviour
 
         if (nextSpawnTimer <= 0f)
         {
-            if (createdLugages.Count < maxNumberOfLugages)
-                HandleNewLugage();
+            if (createdLugages.Count != 0)
+                SpawnLugage();
             else if (despawnedLugages.Count > 0)
                 HandleExistingLugage();
 
             nextSpawnTimer = Random.Range(minMaxOfWaitTime.x, minMaxOfWaitTime.y);
             Debug.Log(string.Format("Next Spawn in: {0} seconds", nextSpawnTimer));
         }
+    }
+
+    void CreateAllLugage()
+    {
+        for (int i = 0; i < maxNumberOfLugages; i++)
+        {
+            HandleNewLugage();
+        }
+    }
+
+    void CreateLugage()
+    {
+        HandleNewLugage();
+    }
+
+    void SpawnLugage()
+    {
+        spawnedLugages.Add(createdLugages[0]);
+        createdLugages[0].SetActive(true);
+        createdLugages.Remove(createdLugages[0]);
+    }
+
+    void GetCorrectCase()
+    {
+        // Combine spawned, created, and despawned luggage.
+        List<GameObject> combinedLugages = spawnedLugages.Concat(createdLugages).Concat(despawnedLugages).ToList();
+        
+        // Select one at random, then clone it so it appears on screen.
+        correctCase = combinedLugages[Random.Range(0, combinedLugages.Count)];
+        correctCaseClone = Instantiate(correctCase, correctCaseSpawnpoint.transform.position,
+            correctCaseSpawnpoint.transform.rotation);
+        correctCaseClone.SetActive(true);
+        correctCaseClone.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void HandleNewLugage()
@@ -122,11 +168,13 @@ public class Procedural : MonoBehaviour
         mc.material = physicsMaterial;
         */
 
+        newInstance.SetActive(false);
         return newInstance;
     }
 
     void HandleExistingLugage()
     {
+        spawnedLugages.Add(despawnedLugages[0]);
         despawnedLugages[0].SetActive(true);
         despawnedLugages.RemoveAt(0);
     }
@@ -134,6 +182,7 @@ public class Procedural : MonoBehaviour
 
     public void HandleDespawn(GameObject despawning)
     {
+        spawnedLugages.Remove(despawning);
         despawnedLugages.Add(despawning);
         despawning.transform.localPosition = existingLugageSpawnLocation;
         despawning.SetActive(false);
@@ -141,14 +190,25 @@ public class Procedural : MonoBehaviour
 
     public void HandleDelivery(GameObject delivering)
     {
-        createdLugages.Remove(delivering);
+        spawnedLugages.Remove(delivering);
         
         // check if bag was correct, then destroy
         
-        /* if the gameobject is being delivered outside the player view, uncomment next line */
-        // Destroy(delivering);
+            Destroy(delivering, 2f);
+            Destroy(correctCaseClone, 1f);
+            Invoke(nameof(GetCorrectCase), 2f);
+            CreateLugage();
 
-        /* any other callback you want when a lugage is delivered */
+            // Bag was correct.
+            if (delivering.Equals(correctCase))
+                correctTotal++;
+            else
+                correctTotal--;
+            
+            /* if the gameobject is being delivered outside the player view, uncomment next line */
+            // Destroy(delivering);
+
+            /* any other callback you want when a lugage is delivered */
     }
 }
 
