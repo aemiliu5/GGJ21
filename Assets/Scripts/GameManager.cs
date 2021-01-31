@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,24 +11,31 @@ public class GameManager : MonoBehaviour
     public bool paused;
     public float timerEnd;
     public int stamps;
+    public Image clock;
 
     private void Start()
     {
         paused = false;
         Time.timeScale = 1;
+        PlayerPrefs.SetInt("Stamps", 0);
+        PlayerPrefs.Save();
     }
 
     // Update is called once per frame
     void Update()
     {
+        clock.fillAmount = 1 - (Time.timeSinceLevelLoad / timerEnd);
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         { 
             Pause();
         }
 
-        if (Time.time > timerEnd)
+        if (Time.timeSinceLevelLoad > timerEnd)
         {
-            // load win scene
+            PlayerPrefs.SetInt("Stamps", stamps);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("WinScene");
         }
     }
 

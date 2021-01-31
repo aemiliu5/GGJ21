@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject CreditsMenu;
 
+    public Text stampsText;
+
     public Resolution[] resolutions;
     public Dropdown resolutionDropdown;
     public Slider VolumeSlider;
@@ -28,16 +30,24 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator LoadAsyncLevel(string sceneName)
     {
-        MainMenu.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "WinScene")
+        {
+            MainMenu.SetActive(false);
+            loading.SetActive(true); 
+        }
+        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            loadSlider.value = progress;
-            loadText.text = progress * 100 + "%";
-            Debug.Log("Loading Progress: " + progress);
+            if (SceneManager.GetActiveScene().name != "WinScene")
+            {
+                loadSlider.value = progress;
+                loadText.text = progress * 100 + "%";
+                Debug.Log("Loading Progress: " + progress);
+            }
 
             yield return null;
         }
@@ -73,11 +83,23 @@ public class MenuManager : MonoBehaviour
     }
     public void Awake()
     {
-        MainMenu.SetActive(true);
-        loading.SetActive(false);
-        SettingsMenu.SetActive(false);
-        GetAvailableResolutions();
-        AddUIListeners();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            MainMenu.SetActive(true);
+            loading.SetActive(false);
+            SettingsMenu.SetActive(false);
+            GetAvailableResolutions();
+            AddUIListeners();
+        }
+        else if (SceneManager.GetActiveScene().name == "WinScene")
+        {
+            stampsText.text = "";
+            stampsText.text += "Stamps\n";
+            stampsText.text += PlayerPrefs.HasKey("Stamps") ? PlayerPrefs.GetInt("Stamps").ToString() : "0";
+        }
     }
 
     public void AddUIListeners()

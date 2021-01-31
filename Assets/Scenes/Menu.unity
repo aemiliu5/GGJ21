@@ -823,7 +823,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 19992
+    surfaceParameter: 19110
     meshQueryIndex: 7
     subMeshQueryIndex: 0
     geometryHashValue: 3397503003353559601
@@ -3779,7 +3779,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 19988
+    surfaceParameter: 19106
     meshQueryIndex: 0
     subMeshQueryIndex: 0
     geometryHashValue: -4062439612322727201
@@ -4194,7 +4194,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 20030
+    surfaceParameter: 19148
     meshQueryIndex: 2
     subMeshQueryIndex: 0
     geometryHashValue: -4335604424710977509
@@ -4305,7 +4305,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 20078
+    surfaceParameter: 19196
     meshQueryIndex: 8
     subMeshQueryIndex: 0
     geometryHashValue: -6563022173331965944
@@ -4854,7 +4854,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 19990
+    surfaceParameter: 19108
     meshQueryIndex: 6
     subMeshQueryIndex: 0
     geometryHashValue: 2563769528265470561
@@ -4937,7 +4937,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 20030
+    surfaceParameter: 19148
     meshQueryIndex: 2
     subMeshQueryIndex: 0
     geometryHashValue: -4335604424710977509
@@ -10226,7 +10226,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 20148
+    surfaceParameter: 19266
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 2275414621614040303
@@ -10269,7 +10269,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5aac3fd51d1570d488574f67836661d3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 548a75377f05a77499cfd38fbdfe6c58, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.366
   m_Pitch: 1
@@ -14988,6 +14988,7 @@ MonoBehaviour:
   MainMenu: {fileID: 1670368090}
   SettingsMenu: {fileID: 558979025}
   CreditsMenu: {fileID: 1737667440}
+  stampsText: {fileID: 0}
   resolutionDropdown: {fileID: 4978518584150246697}
   VolumeSlider: {fileID: 806535775}
   myFX: {fileID: 752231242}
