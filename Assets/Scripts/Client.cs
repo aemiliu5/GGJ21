@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,7 +22,13 @@ public class Client : MonoBehaviour
     public State currentState;
     private NavMeshAgent nav;
     private Animator anim;
-    
+
+    private void Awake()
+    {
+        targetCounter = GameObject.Find("AI Target - Counter");
+        targetLeaving = GameObject.Find("AI Target - Leaving");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

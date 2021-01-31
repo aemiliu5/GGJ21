@@ -18,6 +18,7 @@ public class Procedural : MonoBehaviour
     public GameObject correctCaseClone;
     public GameObject correctCaseSpawnpoint;
     public int correctTotal = 0;
+    public GameObject clientPrefab;
 
     // [Header("References")]
     // public GameObject despawner;
@@ -95,6 +96,9 @@ public class Procedural : MonoBehaviour
 
     void GetCorrectCase()
     {
+        // Spawn client
+        //Instantiate(clientPrefab, )
+        
         // Combine spawned, created, and despawned luggage.
         List<GameObject> combinedLugages = spawnedLugages.Concat(createdLugages).Concat(despawnedLugages).ToList();
         
