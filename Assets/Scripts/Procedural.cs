@@ -194,9 +194,9 @@ public class Procedural : MonoBehaviour
         
         // check if bag was correct, then destroy
         
-            Destroy(delivering, 2f);
-            Destroy(correctCaseClone, 1f);
-            Invoke(nameof(GetCorrectCase), 2f);
+            Destroy(delivering);
+            Destroy(correctCaseClone);
+            GetCorrectCase();
             CreateLugage();
 
             // Bag was correct.
