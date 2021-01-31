@@ -27,15 +27,11 @@ public class ConveyorBelt : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Hookable"))
             onBelt.Add(other.gameObject);
-        
-        Debug.Log("hi");
     }
     
     private void OnCollisionExit(Collision other)
     {
         if(other.gameObject.CompareTag("Hookable"))
             onBelt.Remove(other.gameObject);
-        
-        Debug.Log("bye");
     }
 }
