@@ -116,10 +116,11 @@ public class Procedural : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
         // collider check and add if needed
-        MeshCollider mc = newInstance.GetComponent<MeshCollider>() ? newInstance.GetComponent<MeshCollider>() : null;
+        /*MeshCollider mc = newInstance.GetComponent<MeshCollider>() ? newInstance.GetComponent<MeshCollider>() : null;
         if (mc == null) mc = newInstance.AddComponent<MeshCollider>();
         mc.convex = true;   // need that, no idea why
         mc.material = physicsMaterial;
+        */
 
         return newInstance;
     }

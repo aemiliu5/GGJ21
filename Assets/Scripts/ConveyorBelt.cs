@@ -12,8 +12,14 @@ public class ConveyorBelt : MonoBehaviour
     private void FixedUpdate()
     {
         for (int i = 0; i <= onBelt.Count - 1; i++)
-        { 
-            onBelt[i].GetComponent<Rigidbody>().velocity = speed * direction * Time.fixedDeltaTime;
+        {
+            onBelt[i].GetComponent<Rigidbody>().velocity =
+                new Vector3(direction.x, onBelt[i].GetComponent<Rigidbody>().velocity.y, direction.z) * (speed * Time.fixedDeltaTime);
+
+            if (onBelt[i].GetComponent<Rigidbody>().isKinematic)
+            {
+                onBelt.Remove(onBelt[i]);
+            }
         }
     }
 
@@ -21,11 +27,15 @@ public class ConveyorBelt : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Hookable"))
             onBelt.Add(other.gameObject);
+        
+        Debug.Log("hi");
     }
     
     private void OnCollisionExit(Collision other)
     {
         if(other.gameObject.CompareTag("Hookable"))
             onBelt.Remove(other.gameObject);
+        
+        Debug.Log("bye");
     }
 }

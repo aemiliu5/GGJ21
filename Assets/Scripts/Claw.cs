@@ -84,9 +84,6 @@ public class Claw : MonoBehaviour
 
             hookedObject = null;
         }
-
-        if (hookedObject)
-            Debug.Log(hookedObject.GetComponent<Rigidbody>().velocity);
         #endregion
 
         #region Audio
@@ -153,7 +150,5 @@ public class Claw : MonoBehaviour
         Vector3 movementVector = new Vector3(-zMovement, 0, xMovement).normalized * (Time.fixedDeltaTime * speed);
 
         rb.AddForce(movementVector, ForceMode.Acceleration);
-
-        Debug.Log(rb.position);
     }
 }
