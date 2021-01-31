@@ -40,7 +40,10 @@ public class MenuManager : MonoBehaviour
    
     }
 
-
+    public void GoToMainMenuFromWin()
+    {
+        SceneManager.LoadScene("Menu");
+    }
     public void Awake()
     {
         GetAvailableResolutions();
