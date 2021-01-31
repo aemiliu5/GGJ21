@@ -1,0 +1,56 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    public GameObject PauseMenu;
+    public bool paused;
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        { 
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        paused = !paused;
+
+        if (paused)
+        {
+            Time.timeScale = 0f;
+            PauseMenu.SetActive(true);
+
+            FindObjectOfType<MouseLook>().enabled = false;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            PauseMenu.SetActive(false);
+
+            FindObjectOfType<MouseLook>().enabled = true;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+}

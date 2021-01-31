@@ -8,6 +8,7 @@ public class Client : MonoBehaviour
     [Header("AI")]
     public GameObject targetCounter;
     public GameObject targetLeaving;
+    public float stopDistance;
 
     public enum State
     {
@@ -37,7 +38,7 @@ public class Client : MonoBehaviour
         switch (currentState)
         {
             case State.GoingToCounter:
-                if (nav.remainingDistance > 0.5f)
+                if (nav.remainingDistance > stopDistance)
                 {
                     nav.destination = targetCounter.transform.position;
                 }
@@ -46,8 +47,9 @@ public class Client : MonoBehaviour
                     currentState = State.AtCounter;
                 }
 
+                Debug.Log(nav.remainingDistance);
                 break;
-            
+
             case State.AtCounter:
                 nav.isStopped = true;
                 anim.SetBool("walking", false);

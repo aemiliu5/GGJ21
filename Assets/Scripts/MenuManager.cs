@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     public GameObject MainMenu;
     public GameObject SettingsMenu;
     public GameObject CreditsMenu;
-    public GameObject PauseMenu;
+
     public Resolution[] resolutions;
     public Dropdown resolutionDropdown;
     public Slider VolumeSlider;
@@ -18,23 +18,6 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level");
     }
-
-    
-
-
-    public void Pause()
-    {
-        Time.timeScale = 0;
-        PauseMenu.SetActive(true);
-    }
-
-    public void Resume()
-    {
-        Time.timeScale = 1;
-        PauseMenu.SetActive(false);
-    }
-
-
 
     public void Settings()
     {
