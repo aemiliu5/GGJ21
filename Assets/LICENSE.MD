@@ -1,6 +1,6 @@
-LFS: The Lost & Found Simulator (C) 2021 by Null Reference Exception
+Baggatch (C) 2021 by Null Reference Exception
 
-LFS: The Lost & Found Simulator is licensed under a
+Baggatch is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0.
 
 You should have received a copy of the license along with this
